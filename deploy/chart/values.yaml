@@ -706,6 +706,11 @@ registry:
   # @default -- {}
   secret: {}
 
+  # -- Redis connection pool settings for the registry
+  redis:
+    # -- Connection pool size for the registry Redis client
+    poolSize: 100
+
   # -- Extra environment variables with valueFrom support
   # @default -- []
   extraEnv: []

@@ -492,6 +492,17 @@
           "additionalProperties": true,
           "description": "Full distribution/distribution config.yml passed through verbatim. Chart-managed redis/log/http blocks are merged on top at render time. Used only when existingConfigMap is empty."
         },
+        "redis": {
+          "type": "object",
+          "description": "Redis connection pool settings for the registry",
+          "properties": {
+            "poolSize": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Connection pool size for the registry Redis client"
+            }
+          }
+        },
         "existingConfigMap": {
           "type": "string",
           "description": "Externally-managed ConfigMap with config.yml + ctl-config.yml. When set, the chart skips generating the registry ConfigMap and mounts this one instead."

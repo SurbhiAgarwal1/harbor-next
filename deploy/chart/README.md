@@ -1068,6 +1068,8 @@ Kubernetes: `>=1.28.0-0`
 | registry.podLabels | object | `{}` | Additional pod labels for Registry |
 | registry.podSecurityContext | object | `{"fsGroup":10000,"fsGroupChangePolicy":"OnRootMismatch"}` | Pod security context for Registry |
 | registry.probes | object | See [values.yaml](values.yaml) | Probes for the registry container. Full Kubernetes probe specs, rendered verbatim — see `core.probes` for the tuning rationale. |
+| registry.redis | object | `{"poolSize":100}` | Redis connection pool settings for the registry |
+| registry.redis.poolSize | int | `100` | Connection pool size for the registry Redis client |
 | registry.replicas | int | `1` | Number of Registry replicas (ignored when autoscaling.enabled=true) |
 | registry.resources | object | `{"limits":{"memory":"512Mi"},"requests":{"cpu":"100m","memory":"256Mi"}}` | Registry resource requests and limits |
 | registry.secret | object | {} | Sensitive config for Registry. Each key is b64-encoded into the generated registry Secret and injected on both `registry` and `registryctl` containers via `envFrom`. Use for inline credentials, e.g.:      secret:       REGISTRY_STORAGE_S3_ACCESSKEY: <plaintext>       REGISTRY_STORAGE_S3_SECRETKEY: <plaintext>  Prefer `storageCredentials.<backend>.existingSecret` for production (External-Secrets-Operator / Vault / SealedSecrets workflows). |

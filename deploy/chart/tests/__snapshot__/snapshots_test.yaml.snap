@@ -362,13 +362,13 @@
         redis:
           addrs:
           - valkey:6379
+          connmaxidletime: 60s
           db: 2
           dialtimeout: 10s
           enableTLS: false
-          pool:
-            idletimeout: 60s
-            maxactive: 500
-            maxidle: 100
+          minidleconns: 10
+          poolsize: 100
+          pooltimeout: 2s
           readtimeout: 10s
           writetimeout: 10s
         storage:
@@ -877,13 +877,13 @@
         redis:
           addrs:
           - valkey:6379
+          connmaxidletime: 60s
           db: 2
           dialtimeout: 10s
           enableTLS: false
-          pool:
-            idletimeout: 60s
-            maxactive: 500
-            maxidle: 100
+          minidleconns: 10
+          poolsize: 100
+          pooltimeout: 2s
           readtimeout: 10s
           writetimeout: 10s
         storage:
@@ -1392,13 +1392,13 @@
         redis:
           addrs:
           - sentinel.example.com:6379
+          connmaxidletime: 60s
           db: 2
           dialtimeout: 10s
           enableTLS: true
-          pool:
-            idletimeout: 60s
-            maxactive: 500
-            maxidle: 100
+          minidleconns: 10
+          poolsize: 100
+          pooltimeout: 2s
           readtimeout: 10s
           sentinelMasterSet: mymaster
           writetimeout: 10s
@@ -1908,13 +1908,13 @@
         redis:
           addrs:
           - redis.example.com:6379
+          connmaxidletime: 60s
           db: 2
           dialtimeout: 10s
           enableTLS: false
-          pool:
-            idletimeout: 60s
-            maxactive: 500
-            maxidle: 100
+          minidleconns: 10
+          poolsize: 100
+          pooltimeout: 2s
           readtimeout: 10s
           writetimeout: 10s
         storage:
@@ -2442,13 +2442,13 @@
         redis:
           addrs:
           - valkey:6379
+          connmaxidletime: 60s
           db: 2
           dialtimeout: 10s
           enableTLS: false
-          pool:
-            idletimeout: 60s
-            maxactive: 500
-            maxidle: 100
+          minidleconns: 10
+          poolsize: 100
+          pooltimeout: 2s
           readtimeout: 10s
           writetimeout: 10s
         storage:
@@ -3086,13 +3086,13 @@
         redis:
           addrs:
           - valkey:6379
+          connmaxidletime: 60s
           db: 2
           dialtimeout: 10s
           enableTLS: false
-          pool:
-            idletimeout: 60s
-            maxactive: 500
-            maxidle: 100
+          minidleconns: 10
+          poolsize: 100
+          pooltimeout: 2s
           readtimeout: 10s
           writetimeout: 10s
         storage:

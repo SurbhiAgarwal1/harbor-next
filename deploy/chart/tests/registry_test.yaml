@@ -213,6 +213,44 @@ tests:
           path: data["config.yml"]
           pattern: "bucket: b"
 
+  # Distribution v3 redis pool options (Fix #1092). Distribution v3 ignores
+  # legacy pool.maxidle/maxactive/idletimeout and parses poolsize/pooltimeout/
+  # minidleconns/connmaxidletime directly on redis.
+  - it: should render distribution v3 redis pool config with defaults
+    template: templates/registry.configmap.yaml
+    set:
+      externalURL: https://harbor.example.com
+      database.host: postgres.example.com
+      harborAdminPassword: Harbor12345
+    asserts:
+      - matchRegex:
+          path: data["config.yml"]
+          pattern: "poolsize: 100"
+      - matchRegex:
+          path: data["config.yml"]
+          pattern: "pooltimeout: 2s"
+      - matchRegex:
+          path: data["config.yml"]
+          pattern: "minidleconns: 10"
+      - matchRegex:
+          path: data["config.yml"]
+          pattern: "connmaxidletime: 60s"
+      - notMatchRegex:
+          path: data["config.yml"]
+          pattern: "maxactive: 500"
+
+  - it: should render custom registry.redis.poolSize
+    template: templates/registry.configmap.yaml
+    set:
+      externalURL: https://harbor.example.com
+      database.host: postgres.example.com
+      harborAdminPassword: Harbor12345
+      registry.redis.poolSize: 250
+    asserts:
+      - matchRegex:
+          path: data["config.yml"]
+          pattern: "poolsize: 250"
+
   # ============================================================================
   # registry.existingConfigMap — chart skips ConfigMap generation
   # ============================================================================

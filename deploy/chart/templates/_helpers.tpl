@@ -254,10 +254,10 @@ redis:
   writetimeout: 10s
   dialtimeout: 10s
   enableTLS: {{ eq (include "harbor.redis.enableTLS" . | trim) "true" }}
-  pool:
-    maxidle: 100
-    maxactive: 500
-    idletimeout: 60s
+  poolsize: {{ dig "redis" "poolSize" 100 (.Values.registry | default dict) }}
+  pooltimeout: 2s
+  minidleconns: 10
+  connmaxidletime: 60s
 http:
   addr: ":5000"
   debug:
